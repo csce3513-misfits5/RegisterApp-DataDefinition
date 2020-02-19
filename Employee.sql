@@ -13,8 +13,13 @@ CREATE TABLE employee (
   OIDS=FALSE
 );
 
+-----------------------------
 --  A cheap way to prevent malicious actors from using employee IDs to determine
 -- how many employees are in your company. Obviously this is not foolproof.
+-----------------------------
+-- I have never seen this approach before. Interesting trick.
+-----------------------------
+
 CREATE SEQUENCE employee_employeeid_seq AS int START WITH 253 INCREMENT BY 7 OWNED BY employee.employeeid;
 
 ALTER TABLE employee ALTER employeeid SET DEFAULT nextval('employee_employeeid_seq');
